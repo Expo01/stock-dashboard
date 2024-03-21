@@ -17,6 +17,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env  
+# putting .env file we made as ignored protects the API key from being made public
 
 npm-debug.log*
 yarn-debug.log*
