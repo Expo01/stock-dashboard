@@ -3,6 +3,7 @@ import React, { useState } from "react"; //ALWAYS ALLOW AUTO-COMPLETE FOR ITEMS 
 import { mockSearchResults } from "../constants/mock"; // mockSearchResults object which we
 // created as mock.js contains an array of objects
 import { SearchIcon, XIcon } from "@heroicons/react/solid"; 
+import SearchResults from "./SearchResults";
 
 
 const Search = () => { 
@@ -30,7 +31,7 @@ const Search = () => {
             setInput(event.target.value);
         }}
         onKeyPress={(event) =>{ //onKeyPress is depracated (old) and should be replaced. but do i have to?
-            if (event.key === "Enter"){ // I have a 'enter' instead of 'Enter
+            if (event.key === "Enter"){ 
                 updateBestMatches();
             }
         }}
@@ -38,7 +39,7 @@ const Search = () => {
 
 {/* x icon appears when something typed in search bar */}
     {input && (
-    <button onClick={clear}>
+    <button onClick={clear} className="m-1">
          <XIcon className="h-4 w-4 fill-gray-500" /> 
     </button>
     )}
@@ -50,6 +51,10 @@ const Search = () => {
     >
         <SearchIcon className="h-4 w-4 fill-gray-100" />
       </button>
+    {input && bestMatches.length > 0? <SearchResults results={bestMatches}/> : null}
+    {/* states that if there is input, and the input actually has a length, then pass in 'bestMatches'
+    as the value of results to be used in the SearchResults component/function, as 
+    indicated by the SearchResults react element tag */}
   </div>;
 };
 
