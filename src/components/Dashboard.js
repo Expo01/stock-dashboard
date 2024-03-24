@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "./Card";
 import { mockCompanyDetails } from "../constants/mock";
 import Header from "./Header";
 import Details from "./Details";
 import Overview from "./Overview";
+import Chart from "./Chart";
 
 const Dashboard = () => {
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
             {/* Header references the Header.js component */}
         </div>
         <div className="md:col-span-2 row-span-4">
-            <Card>Chart</Card>
+            <Chart/>  {/* references Chart component*/}
         </div>
         <div> {/* hard coding parameters to be passed to Overview object-function in Overview.js
          which we will later repalce the hardcode with API info */}
