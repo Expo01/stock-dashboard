@@ -1,3 +1,5 @@
+// PROJECT USING JAVASCRIPT LIBRARY- REACT.JS
+
 import './App.css';
 import Dashboard from './components/Dashboard';
 import ThemeContext from './context/ThemeContext';

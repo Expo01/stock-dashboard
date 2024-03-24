@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
+import ThemeContext from "../context/ThemeContext";
 
 const Details = ({details}) => {
+
+  const {darkMode} = useContext(ThemeContext);
 
     // creating an object that contains fields with info pulled from mock data
   const detailsList = {
@@ -21,7 +24,8 @@ const Details = ({details}) => {
   return (
     <Card>
       <ul
-        className="w-full h-full flex flex-col justify-between divide-y-1"
+        className= {`w-full h-full flex flex-col justify-between divide-y-1 ${
+          darkMode ? "divide=gray-800" : null }`}
       >
         {/* looks like this accepts the above detailsList object and then maps each of items
         'item' fields */}

@@ -1,10 +1,11 @@
-import React, {useState } from "react";
+import React, {useContext, useState } from "react";
 import { mockHistoricalData } from "../constants/mock";
 import { convertUnixTimestampToDate} from "../helpers/date-helpers";
 import Card from "./Card";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { chartConfig } from "../constants/config";
 import ChartFilter from "./ChartFilter";
+import ThemeContext from "../context/ThemeContext";
 
 
 const Chart = () => {
@@ -13,6 +14,8 @@ const Chart = () => {
     // function that updates the state. useState(stuff) accepts initial data
   const [data, setData] = useState(mockHistoricalData);
   const [filter, setFilter] = useState("1W");
+
+  const {darkMode} = useContext(ThemeContext);
 
 //   must pass data in way that recharts understands
 const formatData = () => {
@@ -58,10 +61,13 @@ const formatData = () => {
             <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
               <stop
                 offset="5%"
-                stopColor="rgb(199 210 254)"
+                stopColor={darkMode ? "#312e91" : "rgb(199 210 254)"}
                 stopOpacity={0.8}
               />
-              <stop offset="95%" stopColor="rgb(199 210 254)" stopOpacity={0} />
+              <stop 
+              offset="95%" 
+              stopColor={darkMode ? "#312e91" : "rgb(199 210 254)"} // modify linear grad 
+              stopOpacity={0} />
             </linearGradient>
           </defs>
 
@@ -76,7 +82,11 @@ const formatData = () => {
 
           {/* tooltip will show price on chart when hovered over. With mock data, only shows
           3 price points on a smoothed line, but fibhub api will increase datapoints */}
-          <Tooltip/> 
+          <Tooltip 
+          contentStyle={darkMode ? {backgroundColor: "#111827"} : null}
+          itemStyle={darkMode ? {color: "#818cf8"}: null}
+          /> 
+          {/* return object of bg color if darkmode for tool tip */}
           <XAxis dataKey="date" />
           <YAxis domain={["dataMin", "dataMax"]} />
         </AreaChart>
