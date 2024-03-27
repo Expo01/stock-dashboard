@@ -1,4 +1,3 @@
-
 const basePath = "https://finnhub.io/api/v1"
 
 /* finhub RESTful API: 
@@ -15,10 +14,6 @@ const basePath = "https://finnhub.io/api/v1"
 //============================**************================================
 
 
-//symbol lookup, finhub requries querry text and provides an example "/search?q=apple"
-// where q means query
-// query will be what user enters in search
-// finhub returns display symbol
 export const searchSymbols = async (query) => { 
     const url= `${basePath}/search?q=${query}&token=${process.env.REACT_APP_API_KEY}`; 
 // in env file, we imoprted the REACT_APP... from finhub
@@ -31,6 +26,16 @@ if(!response.ok){
 
 return await response.json(); // parses response as json and produces JS object. JSON = JS object notation
 };
+
+// basically, the user searches a 'query' which then is searched through basePath to finhub using 
+// search?q syntax mandated by finhub and we pass a token of sorts. we then get a 'response' 
+// which is the result of the the finhub query. then that info gets returned as a json JS object
+// Here is the Path... Search const created in search.js. I uses imported file 'SearchResults'
+// which basically provides a list structure to break data out into and then uses imported
+// searchSymbols method from above passing in 'input' from user which is used as 'query' parameter
+// in imported searchSymbols function, bestMatches set to the results of the API query  somehow involving useState 
+//then exported --> imported by Header and Header exported --> Header imported by Dashboard and Dashboard 
+//exported --> App.js imports Dashboard. 
 
 //============================**************================================
 

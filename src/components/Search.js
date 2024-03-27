@@ -4,8 +4,8 @@ import React, { useContext, useState } from "react"; //ALWAYS ALLOW AUTO-COMPLET
 // // created as mock.js contains an array of objects
 import { SearchIcon, XIcon } from "@heroicons/react/solid"; 
 import SearchResults from "./SearchResults";
-import ThemeContext from "../context/ThemeContext";
-import { searchSymbols } from "../api/stock-api";
+import ThemeContext from "../context/ThemeContext"; // File imports no squiggle wraps
+import { searchSymbols } from "../api/stock-api"; // const imports wrapped in {}
 
 
 
@@ -21,8 +21,9 @@ const Search = () => {
       try{
         if (input){
           const searchResults = await searchSymbols(input);  // await keyword requries async
+          // searchSymbols const function imported from stock-api.js
           const result = searchResults.result; // actual array
-          setBestMatches(result);
+          setBestMatches(result); // bestMatches set to the results of the API query
         }
       } catch(error){
           setBestMatches([])
