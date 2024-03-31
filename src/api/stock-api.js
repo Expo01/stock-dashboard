@@ -33,7 +33,8 @@ return await response.json(); // parses response as json and produces JS object.
 // Here is the Path... Search const created in search.js. I uses imported file 'SearchResults'
 // which basically provides a list structure to break data out into and then uses imported
 // searchSymbols method from above passing in 'input' from user which is used as 'query' parameter
-// in imported searchSymbols function, bestMatches set to the results of the API query  somehow involving useState 
+// in imported searchSymbols function, bestMatches set to the results of the API query  somehow 
+// involving useState 
 //then exported --> imported by Header and Header exported --> Header imported by Dashboard and Dashboard 
 //exported --> App.js imports Dashboard. 
 
@@ -51,6 +52,13 @@ export const fetchStockDetails = async(stockSymbol) => {
 
     return await response.json();
 };
+/*
+unlike the Search function in Search.js, the fetchStockDetails function is wrapped in a useEffect
+{} in Dashboard. there is also no user input like when Search() from Search.js accepts input and 
+passes into searchSymbols functions above. Our fetchStockDetails accepts stockSymbol as parameter
+but from where? I think this is where useEffect must do something?
+
+*/
 
 //============================**************================================
 

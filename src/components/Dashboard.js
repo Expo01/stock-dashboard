@@ -23,7 +23,10 @@ const Dashboard = () => {
     const[stockDetails, setStockDetails] = useState({});
     const [quote, setQuote] = useState({});
 
-    // will run every time stock symbol changes
+    // will run every time stock symbol changes. this is because of useEffect which is a function that
+    // is designed to run and re-render the page any time there is a change somewhere on the page
+    // such that if the stock ticker changes in the search, all the data is now re-rendered for the
+    // appropraite stock
     useEffect(() => {
       const updateStockDetails = async () => {
         try{
